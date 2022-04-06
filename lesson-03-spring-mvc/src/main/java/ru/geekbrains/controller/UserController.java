@@ -44,4 +44,10 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/user";
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id){
+        userRepository.delete(id);
+        return "redirect:/user";
+    }
 }
