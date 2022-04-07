@@ -1,0 +1,44 @@
+package ru.geekbrains.persist;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class Product {
+
+    private Long id;
+
+    @NotBlank
+    private String title;
+
+    @NotNull
+    @Min(0)
+    @Max(100000)
+    private Double cost;
+
+    public Product(String title, Double cost) {
+        this.title = title;
+        this.cost = cost;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Double getCost() {return cost; }
+
+    public void setCost(Double cost) { this.cost = cost;}
+}
