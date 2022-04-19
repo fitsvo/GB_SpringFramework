@@ -1,7 +1,6 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,12 +10,11 @@ public class Buyer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false, unique = true)
+    @Column
     private String name;
 
-    @ManyToMany(mappedBy = "buyers")
-    private List<Product> products;
+    @OneToMany(mappedBy = "buyer")
+    private List<LineItem> lineItems;
 
     public Buyer(){}
 
@@ -40,19 +38,19 @@ public class Buyer {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<LineItem> getLineItems() {
+        return lineItems;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     @Override
     public String toString() {
         return "Buyer{" +
                 "id=" + id +
-                ", title='" + name + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

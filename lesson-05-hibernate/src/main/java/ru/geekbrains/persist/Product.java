@@ -1,10 +1,7 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -14,22 +11,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String title;
 
-    @NotNull
-    @Min(0)
-    @Max(100000)
-    @Column
-    private Double cost;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Buyer> buyers;
+    @Column(nullable = false)
+    private BigDecimal price;
 
-    public Product(String title, Double cost) {
+    @OneToMany(mappedBy = "product")
+    private List<LineItem> lineItems;
+
+    public Product(String title, BigDecimal price) {
         this.title = title;
-        this.cost = cost;
+        this.price = price;
     }
 
     public Long getId() {
@@ -48,16 +42,16 @@ public class Product {
         this.title = title;
     }
 
-    public Double getCost() {return cost; }
+    public BigDecimal getPrice() {return price; }
 
-    public void setCost(Double cost) { this.cost = cost;}
+    public void setPrice(BigDecimal price) { this.price = price;}
 
-    public List<Buyer> getBuyers() {
-        return buyers;
+    public List<LineItem> getLineItems() {
+        return lineItems;
     }
 
-    public void setBuyers(List<Buyer> buyers) {
-        this.buyers = buyers;
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     @Override
@@ -65,7 +59,7 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", cost='" + cost + '\'' +
+                ", cost='" + price + '\'' +
                 '}';
     }
 }

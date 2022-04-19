@@ -10,6 +10,7 @@ import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @RequestMapping("/product")
 @Controller
@@ -37,7 +38,7 @@ public class ProductController {
 
     @GetMapping("/new")
     public String form(Model model) {
-        model.addAttribute("product", new Product("", 0.0));
+        model.addAttribute("product", new Product("", new BigDecimal("0.0")));
         return "product_form";
     }
 

@@ -17,5 +17,9 @@
         <property name="hibernate.format_sql">true</property>
 
         <mapping class="ru.geekbrains.persist.Product"/>
+        <mapping class="ru.geekbrains.persist.Buyer"/>
+        <mapping class="ru.geekbrains.persist.LineItem"/>
+        <mapping class="ru.geekbrains.persist.ProductRepository"/>
+        <mapping class="ru.geekbrains.persist.BuyerDao"/>
     </session-factory>
 </hibernate-configuration>
