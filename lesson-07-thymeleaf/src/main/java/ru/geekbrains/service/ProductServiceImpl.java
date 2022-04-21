@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDto> findUsersByFilter(String titleFilter, String priceFilter, Integer page, Integer size) {
+    public Page<ProductDto> findUsersByFilter(String titleFilter, String priceFilter, Integer page, Integer size, String sortField) {
         Specification<Product> spec = Specification.where(null);
         if (titleFilter != null) {
             spec = spec.and(ProductSpecifications.titleContaining(titleFilter));
@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
         if (priceFilter != null) {
             spec = spec.and(ProductSpecifications.priceContaining(priceFilter));
         }
-        return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by("id")))
+        return productRepository.findAll(spec, PageRequest.of(page, size, Sort.by(sortField)))
                 .map(ProductServiceImpl::productToDto);
     }
 

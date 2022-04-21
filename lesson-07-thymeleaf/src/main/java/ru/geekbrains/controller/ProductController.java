@@ -28,6 +28,7 @@ public class ProductController {
                            @RequestParam Optional<String> priceFilter,
                            @RequestParam Optional<Integer> page,
                            @RequestParam Optional<Integer> size,
+                           @RequestParam Optional<String> sortField,
                            Model model) {
         String usernameFilterValue = titleFilter
                 .filter(s -> !s.isBlank())
@@ -37,11 +38,13 @@ public class ProductController {
                 .orElse(null);
         Integer pageValue = page.orElse(1) - 1;
         Integer sizeValue = size.orElse(3);
+        String sortFieldValue = sortField.orElse("id");
         model.addAttribute("product", productService.findUsersByFilter(
                 usernameFilterValue,
                 emailFilterValue,
                 pageValue,
-                sizeValue));
+                sizeValue,
+                sortFieldValue));
         return "product";
     }
 
