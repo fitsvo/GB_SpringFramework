@@ -1,0 +1,10 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="filter (header, column, arg)" class="form-group mb-2 mr-2">
+  <label for=${column} class="sr-only">[[${header}]]</label>
+  <input type="text" class="form-control" id=${column} th:value=[${arg}]
+         name=${column} placeholder=${header}>
+</div>
+
+</html>
