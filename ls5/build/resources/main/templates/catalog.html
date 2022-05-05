@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product's repository</title>
+</head>
+
+<body>
+<h1>All products:</h1>
+<table>
+    <tr>
+        <td>
+            <p th:each="product: ${productList}" th:text="${product.getId()}" />
+        </td>
+        <td>
+            <p th:each="product: ${productList}" th:text="${product.getTitle()}"/>
+        </td>
+        <td>
+            <p th:each="product: ${productList}" th:text="${product.getPrice()}"/>
+        </td>
+    </tr>
+</table>
+<br>
+<a href="/product">Add product</a>
+</body>
+</html>
