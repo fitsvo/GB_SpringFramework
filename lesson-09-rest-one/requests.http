@@ -1,0 +1,21 @@
+GET http://localhost:8088/mvc-app/rest/v1/product/all
+
+###
+
+POST http://localhost:8088/mvc-app/rest/v1/product
+Content-Type: application/json
+
+    {
+      "title": "Milk",
+      "price": 10
+    }
+
+###
+
+PUT http://localhost:8088/mvc-app/rest/v1/product
+Content-Type: application/json
+
+{
+  "title": "Milk",
+  "price": 10
+}
